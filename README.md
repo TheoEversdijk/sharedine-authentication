@@ -1,2 +1,2 @@
-# sharedine-authentication
-Authentication microservice for ShareDine.
+# sharedine-user
+User microservice for ShareDine.
