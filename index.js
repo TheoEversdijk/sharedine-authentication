@@ -1,8 +1,8 @@
 import express from "express"
 import dotenv from "dotenv"
 import cors from "cors";
-import userRouter from "./routes/users.js";
-dotenv.config()
+import usersRouter from "./routes/users.js";
+dotenv.config({path: '.env'})
 
 const domainsFromEnv = process.env.CORS_DOMAINS || ""
 const port = process.env.PORT || 3000
@@ -24,9 +24,9 @@ const app = express();
 
 app.use(cors(corsOptions))
 
-app.get('/', (req, res) => res.status(200).send("Hello World!"))
+app.get('/', (req, res) => res.status(200).send("Hello Worldxx!"))
 
-app.use("/users", userRouter)
+app.use('/users', cors(), usersRouter)
 
 // app.listen(port, () => {
 //     console.log(`Listening on ${port}`)

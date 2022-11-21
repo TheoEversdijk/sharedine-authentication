@@ -1,12 +1,40 @@
-// import { MongoClient } from "mongodb";
 import bodyParser from 'body-parser';
 import express from 'express'
 import dotenv from 'dotenv'
-
 dotenv.config()
 
 const jsonParser = bodyParser.json()
 const router = express.Router()
+
+// const {
+//     getUsers,
+//     getUser,
+//     createUser,
+//     updateUser,
+//     deleteUser
+// } = require('../controllers/userController.js')
+
+import { getUsers } from "../controllers/userController.js"
+
+
+router.get('/', getUsers);
+
+// router.get('/:userID', cors(), getUser, (req, res, next) => {
+//     res.json('USERID');
+// })
+
+// router.post('/', createUser,  (req, res, next) => {
+//     res.json('Testing');
+//   });
+  
+// router.put('/:userID', updateUser,  (req, res, next) => {
+//     res.json('Testing update');
+//   });
+
+// router.delete('/:userID', deleteUser,  (req, res, next) => {
+//     res.json('Testing delete');
+//   });
+
 
 // const DBUser = process.env.DB_USER || "";
 // const DBPassword = process.env.DB_PASSWORD || "";
