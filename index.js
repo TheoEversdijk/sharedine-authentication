@@ -1,12 +1,11 @@
-import { MongoClient } from "mongodb";
 import express from "express"
 import dotenv from "dotenv"
 import cors from "cors";
-import EXAMPLEROUTER from "./routes/users.js";
+import userRouter from "./routes/users.js";
 dotenv.config()
 
 const domainsFromEnv = process.env.CORS_DOMAINS || ""
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000
 
 const whitelist = domainsFromEnv.split(",").map(item => item.trim())
 
@@ -23,14 +22,15 @@ const corsOptions = {
 
 const app = express();
 
-
 app.use(cors(corsOptions))
 
-app.get('/', (req, res) => res.status(200).send())
+app.get('/', (req, res) => res.status(200).send("Hello World!"))
 
-app.use("/users", EXAMPLEROUTER)
+app.use("/users", userRouter)
 
-app.listen(port, () => {
-    console.log(`Listening on ${port}`)
-})
+// app.listen(port, () => {
+//     console.log(`Listening on ${port}`)
+// })
+
+app.listen(3000)
 

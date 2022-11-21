@@ -10,15 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThijsDeR/Microservice-Template.git"
+    "url": "git+https://github.com/TheoEversdijk/sharedine-authentication.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ThijsDeR/Microservice-Template/issues"
+    "url": "https://github.com/TheoEversdijk/sharedine/issues"
   },
-  "homepage": "https://github.com/ThijsDeR/Microservice-Template#readme",
+  "homepage": "https://github.com/TheoEversdijk/sharedine-authentication#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
