@@ -1,4 +1,4 @@
-import { getUsersData, getUserData } from "../adapters/userAdapter.js"
+  import { getUsersData, getUserData, addNewData, removeUserData, editUserData } from "../adapters/userAdapter.js"
 
 export async function getUsers(req, res) {
     const users = {};
@@ -45,12 +45,14 @@ export async function getUser(req, res) {
 
   export async function addNewUser(req, res) {
     const user = {};
-    if (req.body.username && req.body.email && req.body.password) {
-      user.username = req.body.username;
-      user.email = req.body.email;
-      user.password = req.body.password;
-      const rows = await addUserData(user);
-      if (rows.length >= 0) {
+    const before = await getUsersData();
+    if (req.query.username && req.query.email && req.query.password) {
+      user.username = req.query.username;
+      user.email = req.query.email;
+      user.password = req.query.password;
+      await addNewData(user)
+      const rows = await getUsersData();
+      if (rows.length >= before.length) {
         res.json({
           title: 'user added',
           message: `User ${user.username} has been added`,
@@ -71,37 +73,28 @@ export async function getUser(req, res) {
     }
   }
 
-// const createUser = ((req, res) => {
-//     const newUser = {
-//         id: user.length + 1,
-//         name: req.body.name,
-//     }
-//     user.push(newUser)
-//     res.status(201).json(newUser)
-// })
+  export async function editUser(req, res) {
+    const user = {};
+    if (req.query.username && req.query.email && req.query.password) {
+      user.username = req.query.username;
+      user.email = req.query.email;
+      user.password = req.query.password;
+      await editUserData(req.params.id, user)
+      res.json({
+        title: 'user edited',
+        message: `User ${user.username} has been added`,
+      });
+    }
+  }
 
-// const updateUser = ((req, res) => {
-//     const id = Number(req.params.userID)
-//     const index = user.findIndex(user => user.id === id)
-//     const updateUser = {
-//         id: user.length + 1,
-//         name: req.body.name,
-//     }
-//     user[index] = updateUser
-//     res.status(200).json('User updated')
-// })
-
-// const deleteUser = ((req, res) => {
-//     const id = Number(req.params.userID)
-//     const index = user.findIndex(user => user.id === id)
-//     user.splice(index, 1)
-//     res.status(200).json('User deleted')
-// })
-
-// module.exports = {
-//     getUsers,
-//     getUser,
-//     createUser,
-//     updateUser,
-//     deleteUser
-// }
+  export async function removeUser(req, res) {
+    const id = req.params.id
+    const before = await getUsersData();
+    await removeUserData(req.params.id);
+    const after = await getUsersData();
+    if (before.length > after.length) {
+      res.json({ message: `Removed ${id}` });
+    } else {
+      res.status(500).json({ message: 'Cannot remove user' });
+    }
+  }
