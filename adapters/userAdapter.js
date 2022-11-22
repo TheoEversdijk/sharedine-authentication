@@ -9,7 +9,17 @@ const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.RE
 
 export async function getUsersData() {
     const { data, error } = await supabase.from('users').select('*');
-    console.log(data);
     if (error) console.log('query error', error);
     else return data;
   }
+
+export async function getUserData(id) {
+  console.log('👀 for id:', id);
+  const { data, error } = await supabase.from('users').select('*').eq('id', id);
+  if (error) console.log('query error', error);
+  else return data;
+}
+
+export async function addNewData() {
+
+}

@@ -1,10 +1,10 @@
 import bodyParser from 'body-parser';
-import express from 'express'
-import dotenv from 'dotenv'
-dotenv.config()
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const jsonParser = bodyParser.json()
-const router = express.Router()
+const jsonParser = bodyParser.json();
+const router = express.Router();
 
 // const {
 //     getUsers,
@@ -14,10 +14,27 @@ const router = express.Router()
 //     deleteUser
 // } = require('../controllers/userController.js')
 
-import { getUsers } from "../controllers/userController.js"
+import { getUser, getUsers } from "../controllers/userController.js"
 
+/**
+ * all appointments routes
+ */
+ router.options('/', (req, res, next) => {
+    //set header before response
+    res.header({
+      allow: 'GET, POST, OPTIONS',
+      'Content-type': 'application/json',
+      Data: Date.now(),
+      'Content-length': 0,
+    });
+    //response
+    res.sendStatus(200);
+  });
 
+  
 router.get('/', getUsers);
+
+router.get('/:id', getUser);
 
 // router.get('/:userID', cors(), getUser, (req, res, next) => {
 //     res.json('USERID');
@@ -34,29 +51,5 @@ router.get('/', getUsers);
 // router.delete('/:userID', deleteUser,  (req, res, next) => {
 //     res.json('Testing delete');
 //   });
-
-
-// const DBUser = process.env.DB_USER || "";
-// const DBPassword = process.env.DB_PASSWORD || "";
-// const url = `mongodb+srv://${DBUser}:${DBPassword}@tjourney.sbi37ec.mongodb.net/?retryWrites=true&w=majority`;
-
-// EXAMPLEROUTER.get("/", async (req, res, next) => {
-//     const client = await MongoClient.connect(url, { useNewUrlParser: true })
-//         .catch(err => { console.log(err); });
-
-//     if (!client) {
-//         return;
-//     }
-
-//     try {
-//         const data = await client.db("<DB>").collection("<COLLECTION>").find()
-//         const dataArray = await data.toArray()
-//         client.close();
-
-//         res.status(200).send(dataArray)
-//     } catch (err) {
-//         res.status(500).send(err);
-//     }
-// })
 
 export default router
