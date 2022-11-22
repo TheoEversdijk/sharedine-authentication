@@ -1,5 +1,5 @@
 {
-  "name": "ShareDine User",
+  "name": "sharedine_user",
   "version": "1.0.0",
   "description": "User microservice for ShareDine.",
   "main": "index.js",
