@@ -24,7 +24,7 @@ const app = express();
 
 app.use(cors(corsOptions))
 
-app.get('/', (req, res) => res.status(200).send("Hello Worldxx!"))
+app.get('/', (req, res) => res.status(200).send("ShareDine UserAPI"))
 
 app.use('/users', cors(), usersRouter)
 
