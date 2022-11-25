@@ -5,7 +5,7 @@ import usersRouter from "./routes/users.js";
 dotenv.config({path: '.env'})
 
 const domainsFromEnv = process.env.CORS_DOMAINS || ""
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 
 const whitelist = domainsFromEnv.split(",").map(item => item.trim())
 
@@ -22,7 +22,7 @@ const corsOptions = {
 
 const app = express();
 
-app.use(cors(corsOptions))
+app.use(cors("Access-Control-Allow-Origin: *"))
 
 app.get('/', (req, res) => res.status(200).send("ShareDine UserAPI"))
 
@@ -32,5 +32,5 @@ app.use('/users', cors(), usersRouter)
 //     console.log(`Listening on ${port}`)
 // })
 
-app.listen(3000)
+app.listen(3001)
 

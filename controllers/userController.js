@@ -15,6 +15,7 @@ export async function getUsers(req, res) {
                 id: user.id,
                 name: user.username,
                 email: user.email,
+                password: user.password,
                 created_at: user.created_at,
             });
           });
