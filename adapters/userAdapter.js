@@ -2,10 +2,10 @@ import * as dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 dotenv.config({ path: '.env' });
 
-console.log('url', process.env.REACT_APP_SUPABASE_URL);
+console.log('url', process.env.SUPABASE_URL);
 
 // my supabase client
-const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_ANON_KEY);
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
 export async function getUsersData() {
     const { data, error } = await supabase.from('users').select('*');

@@ -3,6 +3,7 @@
 export async function getUsers(req, res) {
     const users = {};
     const userData = await getUsersData();
+    console.log(userData)
     if (userData.length > 0) {
         users.meta = {
           title: 'all users',
