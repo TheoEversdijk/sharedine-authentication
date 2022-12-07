@@ -4,7 +4,7 @@ dotenv.config();
 
 const router = express.Router();
 
-import { getUser, getUsers, addNewUser, removeUser, editUser } from "../controllers/userController.js"
+import { getUser, getUsers, addNewUser, removeUser, editUser, validateUser } from "../controllers/userController.js"
 
 /**
  * all appointments routes
@@ -24,12 +24,14 @@ import { getUser, getUsers, addNewUser, removeUser, editUser } from "../controll
   
 router.get('/', getUsers);
 
-router.get('/:id', getUser);
+router.get('/user/:id', getUser);
 
-router.post('/', addNewUser);
+router.post('/register', addNewUser);
 
-router.put('/:id', editUser)
+router.get('/login', validateUser)
 
-router.delete('/:id', removeUser);
+router.put('/user/:id', editUser)
+
+router.delete('/user/:id', removeUser);
 
 export default router
