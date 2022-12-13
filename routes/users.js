@@ -4,10 +4,10 @@ dotenv.config();
 
 const router = express.Router();
 
-// import { getNotify } from "../controllers/notifyController.js"
+import { getUser, getUsers, addNewUser, removeUser, editUser, validateUser } from "../controllers/userController.js"
 
 /**
- * all notification routes
+ * all appointments routes
  */
  router.options('/', (req, res, next) => {
     //set header before response
@@ -22,7 +22,16 @@ const router = express.Router();
   });
 
   
-router.get('/');
+router.get('/', getUsers);
 
+router.get('/user/:id', getUser);
+
+router.post('/register', addNewUser);
+
+router.get('/login', validateUser)
+
+router.put('/user/:id', editUser)
+
+router.delete('/user/:id', removeUser);
 
 export default router

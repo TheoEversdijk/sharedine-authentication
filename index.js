@@ -1,11 +1,11 @@
 import express from "express"
 import dotenv from "dotenv"
 import cors from "cors";
-import notificationRouter from "./routes/notification.js";
+import usersRouter from "./routes/users.js";
 dotenv.config({path: '.env'})
 
 const domainsFromEnv = process.env.CORS_DOMAINS || ""
-const port = process.env.PORT || 3005
+const port = process.env.PORT || 3001
 
 const whitelist = domainsFromEnv.split(",").map(item => item.trim())
 
@@ -24,13 +24,13 @@ const app = express();
 
 app.use(cors("Access-Control-Allow-Origin: *"))
 
-app.get('/', (req, res) => res.status(200).send("ShareDine NotificationAPI"))
+app.get('/', (req, res) => res.status(200).send("ShareDine UserAPI"))
 
-app.use('/subscription', cors(), notificationRouter)
+app.use('/users', cors(), usersRouter)
 
 // app.listen(port, () => {
 //     console.log(`Listening on ${port}`)
 // })
 
-app.listen(3005)
+app.listen(3001)
 
