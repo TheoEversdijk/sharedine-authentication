@@ -136,3 +136,4 @@ export async function removeUser(req, res) {
     res.status(500).json({ message: 'Cannot remove user' });
   }
 }
+

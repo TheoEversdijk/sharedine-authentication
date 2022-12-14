@@ -28,9 +28,9 @@ router.get('/user/:id', getUser);
 
 router.post('/register', addNewUser);
 
-router.get('/login', validateUser)
+router.get('/login', validateUser);
 
-router.put('/user/:id', editUser)
+router.put('/user/:id', editUser);
 
 router.delete('/user/:id', removeUser);
 
