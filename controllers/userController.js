@@ -9,14 +9,13 @@ console.log('url', process.env.SUPABASE_URL);
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
 export async function signUp(req, res) {
-  console.log(req.body)
-  let { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: req.body.email,
     password: req.body.password
   });
-  if(error){
+  if (error) {
     res.status(error.status).json(error.message);
   } else {
-    res.status(200).json("The account has been created.")
+    res.status(200).json("The account has been created.");
   }
 }
