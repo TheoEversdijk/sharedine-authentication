@@ -40,6 +40,6 @@ export async function logIn(req, res) {
     console.log(error.status, error.message);
     res.status(error.status).json(error.message);
   } else {
-    return data;
+    res.status(200).json(data);
   };
 };
