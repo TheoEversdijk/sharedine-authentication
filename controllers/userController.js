@@ -1,4 +1,4 @@
-import { getUsersData, getUserData, addNewData, removeUserData, editUserData } from "../adapters/userAdapter.js"
+import { getUsersData, getUserData, addNewData, removeUserData, editUserData, addImageToProfile } from "../adapters/userAdapter.js"
 
 // Encryption
 import bcrypt from "bcrypt";
@@ -138,3 +138,19 @@ export async function removeUser(req, res) {
   }
 }
 
+export async function uploadImage(req, res) {
+  const response = await addImageToProfile({
+    id: req.body.id,
+    image: req.body.image
+  });
+  if (response) {
+    res.json('Image added to profile');
+  } else {
+    res.status(304);
+    res.json('Image could not be added to the profile');
+  }
+}
+
+export async function downloadiage() {
+  const { data, error } = await supabase.storage.from('storage').download('public/avatar1.png')
+}

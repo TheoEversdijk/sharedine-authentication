@@ -52,3 +52,12 @@ export async function removeUserData(id) {
   if (error) console.log('query error', error);
   else return data;
 }
+
+export async function addImageToProfile(user) {
+  console.log('Adding Image to', user.id);
+  const { data, error } = await supabase.from('users').update([{
+    avatar: user.image
+  }]).eq('id', id);
+  if (error) console.log('query error', error);
+  else return data;
+}
