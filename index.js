@@ -1,7 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import cors from "cors";
-import usersRouter from "./routes/users.js";
+import usersRouter from "./routes/usersRouter.js";
 dotenv.config({path: '.env'})
 
 const domainsFromEnv = process.env.CORS_DOMAINS || ""
@@ -21,8 +21,6 @@ const corsOptions = {
 }
 
 const app = express();
-
-app.use(cors("Access-Control-Allow-Origin: *"))
 
 app.get('/', (req, res) => res.status(200).send("ShareDine UserAPI"))
 
