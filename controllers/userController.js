@@ -43,3 +43,34 @@ export async function logIn(req, res) {
     res.status(200).json(data);
   };
 };
+
+export async function getUsers(req, res) {
+  const { data, error } = await supabase.from('profiles').select('*');
+  if (error) {
+    console.log(error.status, error.message);
+    res.status(error.status).json(error.message);
+  } else {
+    res.status(200).json(data);
+  };
+};
+
+export async function getSpecificUser(req, res) {
+  const { data, error } = await supabase.from('profiles').select('*').eq('id', req.body.id);
+  if (error) {
+    console.log(error.status, error.message);
+    res.status(error.status).json(error.message);
+  } else {
+    res.status(200).json(data);
+  };
+};
+
+export async function uploadImage(req, res) {
+  const { data, error } = await supabase.storage.from('storage').upload('public/avatar1.png', req.body.image);
+  console.log(data);
+  if (data) {
+    res.json('Image added to profile');
+  } else {
+    res.status(304);
+    res.json('Image could not be added to the profile');
+  }
+}

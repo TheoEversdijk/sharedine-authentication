@@ -22,6 +22,8 @@ const corsOptions = {
 
 const app = express();
 
+app.use(express.json({ limit: '50mb' }));
+
 app.get('/', (req, res) => res.status(200).send("ShareDine UserAPI"))
 
 app.use('/users', cors(), usersRouter)
