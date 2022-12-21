@@ -16,7 +16,7 @@ router.post('/login', jsonParser, async(req, res) => {
   await logIn(req, res);
 })
 
-router.get('/', jsonParser, async(req, res) => {
+router.get('/:id', jsonParser, async(req, res) => {
   await getSpecificUser(req, res);
 })
 

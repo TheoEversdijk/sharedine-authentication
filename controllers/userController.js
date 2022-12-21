@@ -55,12 +55,12 @@ export async function getUsers(req, res) {
 };
 
 export async function getSpecificUser(req, res) {
-  const { data, error } = await supabase.from('profiles').select('*').eq('id', req.body.id);
+  const { data, error } = await supabase.from('profiles').select('*').eq('id', req.params.id);
   if (error) {
     console.log(error.status, error.message);
     res.status(error.status).json(error.message);
   } else {
-    res.status(200).json(data);
+    res.status(200).json(data[0]);
   };
 };
 
