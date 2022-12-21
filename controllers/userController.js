@@ -44,7 +44,7 @@ export async function logIn(req, res) {
   };
 };
 
-export async function getUsers(req, res) {
+export async function getAllUsers(req, res) {
   const { data, error } = await supabase.from('profiles').select('*');
   if (error) {
     console.log(error.status, error.message);
