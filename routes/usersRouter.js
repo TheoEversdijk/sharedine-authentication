@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import { logIn, signUp, getSpecificUser, uploadImage, checkValidated, verify } from '../controllers/userController.js';
+import { logIn, signUp, getSpecificUser, uploadImage, getAllUsers, checkValidated, verify } from '../controllers/userController.js';
 
 dotenv.config();
 
@@ -17,6 +17,10 @@ router.post('/login', jsonParser, async(req, res) => {
 });
 
 router.get('/', jsonParser, async(req, res) => {
+  await getAllUsers(req, res);
+})
+
+router.get('/:id', jsonParser, async(req, res) => {
   await getSpecificUser(req, res);
 });
 
