@@ -73,6 +73,7 @@ export async function getSpecificUser(req, res) {
   .from('profiles')
   .select('*')
   .eq('id', req.params.id);
+  console.log(data);
   if (error) {
     console.log(error.status, error.message);
     res.status(error.status).json(error.message);

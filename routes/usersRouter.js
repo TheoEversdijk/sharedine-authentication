@@ -17,7 +17,7 @@ router.post('/login', jsonParser, async(req, res) => {
 });
 
 router.get('/', jsonParser, async(req, res) => {
-  await getAllUsers(req, res);
+  await getUsers(req, res);
 })
 
 router.get('/:id', jsonParser, async(req, res) => {
